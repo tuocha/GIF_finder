@@ -14,12 +14,13 @@ function buttonRender() {
     }
 }
 
-$(".animalButton").on("click", function () {
+$(document).on("click", ".animalButton", function () {
     var queryurl = "https://api.giphy.com/v1/gifs/search?"
     var APIkey = "api_key=J43PlJGClyJVinP4UOzWW0U2Dhq18ExH"
     var limit = "&limit=10"
     var language = "&lang=en"
     var searchTerm = "&q=" + $(this).attr("data-name")
+    $("#images").empty();
 
     $.ajax({
         url: queryurl + APIkey + searchTerm + limit + language,
@@ -49,7 +50,7 @@ $(".animalButton").on("click", function () {
     })
 })
 
-$(".animalGIF").on("click", function () {
+$(document).on("click", ".animalGIF", function () {
 
     var state = $(this).attr("data-animate")
     console.log(state)
