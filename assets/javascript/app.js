@@ -40,7 +40,6 @@ $(document).on("click", ".animalButton", function () {
             animalGIF.attr("data-state", "still")
             animalGIF.attr("data-animate", imageURL)
             animalGIF.attr("data-still", response.data[i].images.fixed_height_still.url)
-            animalGIF.attr("alt", searchTerm + " image")
             animalGIF.addClass("animalGIF")
 
             $(animalHolder).append(p)
@@ -54,13 +53,17 @@ $(document).on("click", ".animalGIF", function () {
 
     var state = $(this).attr("data-animate")
     console.log(state)
-    if (state === "still") {
-        $(this).attr("src", $(this).attr("data-animate"));
-        $(this).attr("data-state", "animate");
-    } else {
+    if (state !== "still") {
         $(this).attr("src", $(this).attr("data-still"));
         $(this).attr("data-state", "still");
     }
+    else {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+    }
+
+
+
 })
 
 $("#add-button").on("click", function (event) {
@@ -68,7 +71,7 @@ $("#add-button").on("click", function (event) {
 
     var input = $("#GIF-input").val().trim();
     buttonArr.push(input)
- 
+
     buttonRender();
 })
 
